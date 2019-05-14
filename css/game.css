@@ -1,0 +1,153 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#loading{		
+	position: absolute;
+	top: 50%;	
+	left: 50%;
+	width: 30%;
+	margin-left: -15%;
+	padding: 40px;
+	background: #B5E8C3;
+	text-align: center;
+	animation-name: fadein;		
+}
+
+#loading.show{
+	animation-duration: .2s;
+	top: 50%;
+}
+
+#loading.hide{  
+  animation-duration: .75s;
+  animation-name: slideout;	
+  visibility: hidden;
+}
+
+.view{		
+	position: absolute;
+	top: 100%;	
+	left: 0%;
+	width: 100%;
+	height: 50px;
+	margin-top: -50px;	
+	padding: 5px;
+	background: #2D6073;
+	text-align: center;
+	animation-name: fadein;
+	visibility: hidden;		
+}
+
+.view.show{
+	animation-name: fadein;
+	visibility: visible;
+}
+
+.view >ul{
+	list-style: none;
+	display: inline-flex;	
+}
+
+.view >ul>li{	
+	display: inline-flex;
+	color: #F0F7DA;
+	margin-left: 10px;
+}
+
+.view >ul>li:first-child{	
+	text-transform: uppercase;
+	color: black;
+}
+
+.message{
+	text-align: center;	
+	animation-duration: .75s;
+	position: absolute;
+	left: 50%;
+	width: 50%;
+	margin-left: -25%;
+	visibility: hidden;
+	background: #B5E8C3;/*#65B8A6;B5E8C3*/	
+}
+
+.message > .message-header{
+	background: #2D6073;
+	color: white;
+	text-transform: uppercase;
+}
+
+.message > .message-body{
+	padding: 20px;
+}
+
+.message > .message-header > h1{
+	margin: 0;
+	padding: 20px;
+}
+
+.message.show{	
+	animation-name: slidein;
+	visibility: visible;
+	top: 50%;
+}
+
+.message.hide{	
+	animation-name: slideOut;
+	visibility: hidden;	
+}
+
+button{
+	background-color: #2D6073;
+	padding: 10px 20px;
+	border: none;
+	color: white;
+	text-transform: uppercase;
+}
+
+button:hover{
+	background-color: #65B8A6;
+	cursor: pointer;
+}
+
+div#animate { position: absolute; left: 10px; padding: 50px;
+  background: crimson; color: white }
+
+@keyframes fadein {
+  from {  	    
+    opacity: 0;
+  }
+  to {    
+    opacity: 1;    
+  }
+}
+
+@keyframes slideout {
+  from {
+    top: 50%;  
+    opacity: 1;  
+    visibility: visible;
+  }
+  to {
+    top: 0%;   
+    opacity: 0; 
+    visibility: hidden;
+  }
+}
+
+@keyframes slidein {
+  from {
+    top: 0%;  
+    opacity: 0;  
+    visibility: hidden;
+  }
+  to {
+    top: 50%;   
+    opacity: 1; 
+    visibility: visible;
+  }
+}
