@@ -6,3 +6,4 @@ My version of Rino Ski Game
 - Minify the code with Grunt tasks
 - Add SASS files for styling the UI
 - Add a singleton object for storing the game score
+- Add use case for testing
