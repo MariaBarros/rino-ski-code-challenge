@@ -64,7 +64,7 @@
     // Init/Reset the game
     init(){
       this.paused = false;
-      this.speed = 8;
+      this.speed = 2;
       this.time = 1;
       this.obstacles = [];
       this.skier.direction = 5;      
@@ -184,7 +184,7 @@
           height: this.gameAreaHeight
         };      
       
-      for(var i = 0; i < numberObstacles; i++) {          
+      for(let i = 0; i < numberObstacles; i++) {          
         this.placeObstacle(obstaclesArea);
       }
     };

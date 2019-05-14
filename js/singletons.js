@@ -30,8 +30,8 @@ let assetsObject = singletonFactory('assetsObject', function () {
     let assetPromises = [];    
     //Generatin a promise for each asset
     _.each(assets, function(asset, assetName) {
-        var assetImage = new Image();
-        var assetDeferred = new $.Deferred();
+        let assetImage = new Image(),
+          assetDeferred = new $.Deferred();
         //The asset was loaded
         assetImage.onload = function() {
           assetImage.width /= 2;

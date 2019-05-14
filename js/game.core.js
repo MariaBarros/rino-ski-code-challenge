@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //The game's assets
-    var assets = {
+    let assets = {
         'skierCrash' : 'img/skier_crash.png',
         'skierLeft' : 'img/skier_left.png',
         'skierLeftDown' : 'img/skier_left_down.png',
