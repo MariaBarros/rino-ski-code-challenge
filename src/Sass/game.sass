@@ -1,0 +1,193 @@
+@import 'mixins/mixins'
+
+$color-green: #B5E8C3
+$color-blue: #2D6073
+$color-green-middle: #65B8A6
+
+html, body
+	margin: 0
+	padding: 0
+	@include box(100%)	
+	overflow: hidden
+	font-family: 'Lato', sans-serif
+
+
+#loading, .view, .message, .go
+	position: absolute
+
+#loading, .view, .message
+	@include material-shadow($z-depth: 5)
+
+#loading, .message, .go
+	@include position(top 50% left 50%)	
+
+#loading	
+	width: 30%
+	margin-left: -15%
+	padding: 40px
+	background: $color-green
+	text-align: center
+	animation-name: fadein
+
+#loading.show
+	animation-duration: .2s
+	top: 50%
+
+#loading.hide
+	animation-duration: .75s
+	animation-name: slideout
+	visibility: hidden
+
+.view
+	@include position(top 0% left 0%)	
+	@include box(100%, 50px)	
+	padding: 5px
+	line-height: 2	
+	@include gradient(darken($color-blue, 10%), $color-blue)
+	text-align: center
+	animation-name: fadein
+	visibility: hidden
+	&.show
+		animation-name: fadein
+		visibility: visible	
+	>ul
+		list-style: none
+		display: inline-flex
+		>li
+			display: inline-flex
+			color: #F0F7DA
+			margin-left: 10px
+			&:nth-child(1)
+				background: url('../img/skier_right.png') no-repeat 50% 50%
+				background-size: cover
+				@include box(55px)				
+			&:nth-child(2)
+				background: url('../img/rhino_default.png') no-repeat 50% 50%
+				background-size: cover
+				@include box(55px)				
+			&:nth-child(1), &:nth-child(2)
+				background-color: white
+				border-radius: 50%
+				border: 2px solid $color-green-middle
+				@include material-shadow($z-depth: 5)
+			&:nth-child(3)
+				text-transform: uppercase
+				color: black
+
+.message
+	text-align: center
+	animation-duration: .75s
+	left: 50%
+	width: 50%
+	margin-left: -25%
+	visibility: hidden
+	background: $color-green
+	border-radius: 3px
+	border: 5px solid rgba(darken($color-blue, 10%),.25)
+	z-index: 1000
+	> .message-header		
+		@include gradient(darken($color-green-middle, 20%), $color-green-middle)	
+		text-transform: uppercase
+		border-bottom: 3px solid darken($color-green-middle, 5%)
+		> h1
+			margin: 0
+			padding: 10px
+			color: darken($color-blue,20%)
+	> .message-body
+		padding: 20px
+		>ul
+			list-style: none
+			text-align: left
+			line-height: 1.8
+	&.show
+		animation-name: slidein
+		visibility: visible
+		top: 30%
+	&.hide
+		animation-name: slideOut
+		visibility: hidden	
+
+.expression	
+	@include box(50px)	
+	margin-left: -25px
+	margin-top: -35px
+	text-align: center	
+	visibility: hidden
+	color: lighten($color-blue, 10%)		
+	&.jump, &.crashed		
+		visibility: visible
+	&.go
+		animation: pulse_animation 1s 2
+		&::before
+			content: "Go!"			
+	&.jump
+		&::before
+			content: "Yeah!"			
+
+button
+	background-color: $color-blue
+	border: none
+	border-bottom: 5px solid darken($color-blue, 10%)
+	padding: 10px 20px	
+	color: white
+	text-transform: uppercase
+	&:hover
+		background-color: $color-green-middle
+		border-bottom: 5px solid darken($color-green-middle, 10%)
+		cursor: pointer
+
+.score
+	@include text-shadow(2px,2px,2px,rgba(0,0,0,.25))
+
+.best-score
+	&::before
+		content: "Your best score was: "
+	&.hide
+		display: none
+	&.show
+		display: normal
+
+@include keyframes(fadein)
+	from 
+		@include opacity(0)
+	to
+		opacity: 1
+
+@include keyframes(slideout)
+	from
+		top: 50% 
+		@include opacity(1)
+		visibility: visible
+	to
+		top: 0%
+		opacity: 0
+		visibility: hidden
+
+@include keyframes(slidein)
+	from
+		top: 0%
+		@include opacity(0)
+		visibility: hidden
+	to
+		top: 30%
+		@include opacity(1)
+		visibility: visible
+
+@include keyframes(pulse_animation)
+	0%
+		transform: scale(1)
+		visibility: visible
+	30%
+		transform: scale(1.05)
+	40%
+		transform: scale(2.5)
+	50%
+		transform: scale(1)
+	60%
+		transform: scale(1)
+	70%
+		transform: scale(1.08)
+	80%
+		transform: scale(1)
+	100%
+		transform: scale(1)		
