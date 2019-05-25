@@ -2,53 +2,93 @@
 <head>
     <title>Rhino-Ski</title>
 
-    <link rel="stylesheet" type="text/css" href="css/game.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/southteams-ski.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:900" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <link rel="shortcut icon" href="dist/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="dist/img/favicon.ico" type="image/x-icon">
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-	<script type="text/javascript" src="js/singletons.js"></script>
-    <script type="text/javascript" src="js/game.core.js"></script>
-    <script type="text/javascript" src="js/game.class.js"></script>
-    <script type="text/javascript" src="js/skier.class.js"></script>    
-    <script type="text/javascript" src="js/rino.class.js"></script>    
-    <script type="text/javascript" src="js/obstacle.class.js"></script>
+	<script type="text/javascript" src="dist/js/southteams-ski.min.js"></script>    
 
 </head>
 <body>
 	<div id="loading">Loading game...</div>
-	
-	
-	<div id="messageOnPause" class="message">
-		<div class="message-header">
-			<h1>Rino-Ski says</h1>
-		</div>
-		<div class="message-body">
-			<h2>Hey! Rino-Ski Game is paused</h2>
-			<h3>Continue playing with Rino-Ski!</h3>
-			<button id="play">Play</button>
-		</div>
-	</div>
 
-	<div id="messagegameOver" class="message">
-		<div class="message-header">
-			<h1>Rino-Ski says</h1>
-		</div>
-		<div class="message-body">
-			<h2>Ups! Game Over :(</h2>
-			<h3>Continue playing with Rino-Ski!</h3>
-			<button id="restart">Restart</button>
-		</div>
-	</div>
+	<!--Panel-->
 	<div class="view" id="panel">
 		<ul>
+			<li></li>
+			<li></li>
 			<li>Panel</li>
 			<li>Pause [ESC]</li>
 			<li>Jump [SPACE]</li>
-			<li id="score"></li>
-			<li id="speed"></li>
+			<li>Your score &nbsp;<span class="score"></span></li>
+			<li><span class="best-score"></span></li>
+			<li>Speed &nbsp; <span class="speed"></span>&nbsp;km/h</li>			
+			<li>Distance: &nbsp;<span id="distance"></span>km</li>
 		</ul>
 	</div>
+
+	<!--Pause Container-->	
+	<div id="messageOnPause" class="message">
+		<div class="message-header">
+			<h1>Rhino-Ski says</h1>
+		</div>
+		<div class="message-body">
+			<h2>Hey! Rhino-Ski Game is paused</h2>
+			<h3>Your score is <span class="score"></span></h3>
+			<h4>Continue playing with Rhino-Ski!</h4>
+			<button id="pauseOff">Continue</button>
+		</div>
+	</div>
+
+	<!--Welcome Container-->	
+	<div id="welcome" class="message">
+		<div class="message-header">
+			<h1>Hey! Welcome to Rhino-Ski Game</h1>
+		</div>
+		<div class="message-body">			
+			<h3 class="best-score"></h3>
+			<h3>Remember the rules</h3>
+			<ul>
+				<li>The skier moves with the arrow keys</li>
+				<li>The skier can jump just for fun, but if he jumps over the ramp you'll obtain extra points!</li>
+				<li>The speed is growing along the time</li>
+			</ul>
+			<button id="ok">Ok</button>
+		</div>
+	</div>
+
+	<!--Game Over Container-->	
+	<div id="messagegameOver" class="message">
+		<div class="message-header">
+			<h1>Rhino-Ski says</h1>
+		</div>
+		<div class="message-body">
+			<h2>Ups! Game Over :(</h2>
+			<h2>Your current score <span class="score"></span></h2>
+			<h3 class="best-score"></h3>
+			<h4>Continue playing with Rhino-Ski!</h4>
+			<button id="restart">Restart</button>
+		</div>
+	</div>
+
+	<!--Error Container-->	
+	<div id="error" class="message">
+		<div class="message-header">
+			<h1>Rhino-Ski says</h1>
+		</div>
+		<div class="message-body">
+			<h2>Ups! There was and error :(</h2>
+			<h3 class="best-score"></h3>
+			<h4 id="messageError"></h4>			
+		</div>
+	</div>
+
+	<div class="expression"></div>
 	
 </body>
 </html>
