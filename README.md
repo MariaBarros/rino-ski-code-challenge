@@ -38,6 +38,10 @@ In order to build the project into a clear structure, I'll organize the files as
 * *grunt-contrib-cssmin*: for minifying the project css file.
 * *grunt-contrib-watch*: for checking the code at every change I perform.
 
+##### Running the tasks
+For running the grunt tasks defined above, type : ``grunt``.
+For checking the code at every change and run the tasks automatically, type: ``grunt watch``.
+
 ## The code
 
 The code is organized into three directories: Code, Entities and Sass.
