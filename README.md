@@ -10,6 +10,8 @@ This is my version of Rhino Ski Game
 2. When the player press the left key => ``skierDirection = -1`` (*skierDirection* variable is -1).
 3. Next, in the *"checkIfSkierHitObstacle"* function, the game tries to calculate the skier position to determine if the skier hit an obstacle, but the ``skierImage is undefined`` because ``skierAssetName is undefined``.
 
+For fixing this bug we have to limit the ``skierDirection`` value between [0-5].
+
 ### The interface
 The styling is very important for games. This project only has a minimum *CSS* file. The player cannot see when the game starts or finishes. The interface doesn't show the player's score, nor the game's rules. So, the communication between the game and the player is very very poor.
  
