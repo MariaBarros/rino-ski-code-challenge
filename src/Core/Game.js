@@ -19,6 +19,9 @@ class Game{
     //Notification Manager
     this.notificationManager = notificationManager;
 
+    //Buttons event handlers
+    notificationManager.setEventListener(this);
+
     //Key event listener
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
@@ -64,6 +67,7 @@ class Game{
 
   updateGameWindow() {    
     const previousGameWindow = this.gameWindow;
+    
     if(this.rino.catchSkier() === false){      
       this.skier.move(this.speed);
     }

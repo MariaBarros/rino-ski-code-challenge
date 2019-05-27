@@ -155,7 +155,7 @@ class Skier extends Element{
 
   //Verify collision
   checkIfSkierHitObstacle(obstacleManager) {
-    const asset = Assets.getAsset(this.assetName);    
+    const asset = AssetsManager.getAsset(this.assetName);    
     const skierBounds = this.getBounds();
 
     const collision = obstacleManager.getObstacles().find((obstacle) => {      

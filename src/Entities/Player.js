@@ -18,6 +18,7 @@ class Player{
 
   storeScore(){    
     if(this.score > this.storedScore){
+      this.storedScore = this.score;
       Store.set(SCORE_ITEM, this.score);
     }
   }

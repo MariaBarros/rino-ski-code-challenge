@@ -20,7 +20,7 @@ class Element{
   }
 
   getBounds(){
-    const asset = Assets.getAsset(this.assetName);
+    const asset = AssetsManager.getAsset(this.assetName);
     const position = this.getPosition();
     return new Rect(
         position.x - asset.width / 2,
@@ -32,7 +32,7 @@ class Element{
 
   //Drawing the element in the canvas
   draw(canvas) {
-    const asset = Assets.getAsset(this.assetName);
+    const asset = AssetsManager.getAsset(this.assetName);
     const drawX = this.x - asset.width / 2;
     const drawY = this.y - asset.height / 2;
 

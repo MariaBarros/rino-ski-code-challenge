@@ -4,14 +4,11 @@ $(document).ready(()=>{
     notificationManager.loading();    
     
     //Load assets
-    Assets.load(ASSETS).then(() => {              
+    AssetsManager.load(ASSETS).then(() => {              
 
         notificationManager.loaded();        
 
-        let game = new Game(notificationManager);
-       
-        //Buttons event handlers
-        notificationManager.setEventListener(game);
+        let game = new Game(notificationManager);        
 
         game.init();
         game.run();

@@ -1,8 +1,6 @@
 @import 'mixins/mixins'
 
-$color-green: #B5E8C3
-$color-blue: #2D6073
-$color-green-middle: #65B8A6
+@import '_variables'
 
 html, body
 	margin: 0
@@ -147,47 +145,4 @@ button
 	&.show
 		display: normal
 
-@include keyframes(fadein)
-	from 
-		@include opacity(0)
-	to
-		opacity: 1
-
-@include keyframes(slideout)
-	from
-		top: 50% 
-		@include opacity(1)
-		visibility: visible
-	to
-		top: 0%
-		opacity: 0
-		visibility: hidden
-
-@include keyframes(slidein)
-	from
-		top: 0%
-		@include opacity(0)
-		visibility: hidden
-	to
-		top: 30%
-		@include opacity(1)
-		visibility: visible
-
-@include keyframes(pulse_animation)
-	0%
-		transform: scale(1)
-		visibility: visible
-	30%
-		transform: scale(1.05)
-	40%
-		transform: scale(2.5)
-	50%
-		transform: scale(1)
-	60%
-		transform: scale(1)
-	70%
-		transform: scale(1.08)
-	80%
-		transform: scale(1)
-	100%
-		transform: scale(1)		
+@import '_animations'

@@ -171,7 +171,7 @@ let singletonFactory = (function() {
 /*---------------------------------------------------------------------------+
  * Singleton pattern for loaging assets                                      +
  *--------------------------------------------------------------------------*/
-const Assets = singletonFactory('Assets', () => {
+const AssetsManager = singletonFactory('AssetsManager', () => {
   const assetFunctions = {}; 
   let loadedAssets = []; 
 
@@ -309,6 +309,9 @@ class Game{
     //Notification Manager
     this.notificationManager = notificationManager;
 
+    //Buttons event handlers
+    notificationManager.setEventListener(this);
+
     //Key event listener
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
@@ -354,6 +357,7 @@ class Game{
 
   updateGameWindow() {    
     const previousGameWindow = this.gameWindow;
+    
     if(this.rino.catchSkier() === false){      
       this.skier.move(this.speed);
     }
@@ -571,6 +575,28 @@ class NotificationManager extends DomManager{
   }
 
 }
+ /*----------------------------------------------------------------------------+
+ * Observable allow objects suscribe to events                                 +
+ * and ge notified when the event occurs                                       +
+ *----------------------------------------------------------------------------*/
+ 
+class Observable{
+  constructor(){
+    this.observers = [];  
+  }
+ 
+  //Add event 
+  add(observer) {
+    this.observers.push(observer);
+  }
+
+  //Notify events
+  notify(obj) {
+    this.observers.forEach(function (observer) {
+      observer.call(null, obj);  
+    });
+  }
+}
 const Store = singletonFactory('Store', () => {
   const storeFnc = {};
   storeFnc.set = (itemName, data) =>{
@@ -630,7 +656,7 @@ class Element{
   }
 
   getBounds(){
-    const asset = Assets.getAsset(this.assetName);
+    const asset = AssetsManager.getAsset(this.assetName);
     const position = this.getPosition();
     return new Rect(
         position.x - asset.width / 2,
@@ -642,35 +668,13 @@ class Element{
 
   //Drawing the element in the canvas
   draw(canvas) {
-    const asset = Assets.getAsset(this.assetName);
+    const asset = AssetsManager.getAsset(this.assetName);
     const drawX = this.x - asset.width / 2;
     const drawY = this.y - asset.height / 2;
 
     canvas.drawImage(asset, drawX, drawY, asset.width, asset.height);
   }
   
-}
- /*----------------------------------------------------------------------------+
- * Observable allow objects suscribe to events                                 +
- * and ge notified when the event occurs                                       +
- *----------------------------------------------------------------------------*/
- 
-class Observable{
-  constructor(){
-    this.observers = [];  
-  }
- 
-  //Add event 
-  add(observer) {
-    this.observers.push(observer);
-  }
-
-  //Notify events
-  notify(obj) {
-    this.observers.forEach(function (observer) {
-      observer.call(null, obj);  
-    });
-  }
 }
 /*----------------------------------------------------------------------------+
  * Class Obstacle                                                             +
@@ -833,6 +837,7 @@ class Player{
 
   storeScore(){    
     if(this.score > this.storedScore){
+      this.storedScore = this.score;
       Store.set(SCORE_ITEM, this.score);
     }
   }
@@ -1220,7 +1225,7 @@ class Skier extends Element{
 
   //Verify collision
   checkIfSkierHitObstacle(obstacleManager) {
-    const asset = Assets.getAsset(this.assetName);    
+    const asset = AssetsManager.getAsset(this.assetName);    
     const skierBounds = this.getBounds();
 
     const collision = obstacleManager.getObstacles().find((obstacle) => {      

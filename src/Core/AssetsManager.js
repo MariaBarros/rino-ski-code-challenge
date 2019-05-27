@@ -14,7 +14,7 @@ let singletonFactory = (function() {
 /*---------------------------------------------------------------------------+
  * Singleton pattern for loaging assets                                      +
  *--------------------------------------------------------------------------*/
-const Assets = singletonFactory('Assets', () => {
+const AssetsManager = singletonFactory('AssetsManager', () => {
   const assetFunctions = {}; 
   let loadedAssets = []; 
 
