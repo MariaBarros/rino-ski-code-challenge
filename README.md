@@ -1,5 +1,5 @@
 # Rhino Ski Code Challenge
-This is my version of Rhino Ski Game
+This is my version of Rhino Ski Game. You can view the game online [here](https://sky-rhino-code-challenge.herokuapp.com/).
 
 ## The codebase for refactoring
  The codebase for refactoring is not maintainable, not testable, and not scalable. It hasn't any clear pattern nor comments. The ``js code`` included in the *index.html* is not minified, the project hasn't automated tasks for linting, concatenation, minification and test of code.
@@ -116,8 +116,8 @@ Lastly, index.js inits the game. First, it instantiates a NotificationManager ob
 In order to test the code I've written some tests. These tests are hosted in the spec directory. I you want to see the result of these tests you can type - for example - ``http://localhost:5000/testRunner.html `` in your browser.
 
 ### Running the game
-You can play the game using lite-server. If you don´t have installed lite-server, run:
+For running the game locally, run:
 
-``npm install lite-server``
+``node web.js``
 
-and then, run ``lite serve`` in the application root.
+You can also view the game online [here](https://sky-rhino-code-challenge.herokuapp.com/).
