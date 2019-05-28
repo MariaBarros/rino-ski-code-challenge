@@ -39,8 +39,28 @@ In order to build the project into a clear structure, I'll organize the files as
 * *grunt-contrib-watch*: for checking the code at every change I perform.
 
 ##### Running the tasks
-For running the grunt tasks defined above, type : ``grunt``.
-For checking the code at every change and run the tasks automatically, type: ``grunt watch``.
+In order to run the jshint task correctly, you must to create the ``.jshintrc`` file and define these properties into it:
+
+````
+{
+    "esversion": 6,
+    "strict": true,
+    "module": true,    
+    "globals": {
+        "$": false,
+        "_": false,
+        "window": false,
+        "document": false,
+        "Image": false,
+        "module": true,
+        "eqeqeq": true,
+        "strict": true,
+        "console": true
+    }   
+}
+````
+
+Then, you can run the grunt tasks typing : ``grunt``; or for checking the code at every change and run the tasks automatically, type: ``grunt watch``.
 
 ## The code
 
@@ -94,3 +114,10 @@ Lastly, index.js inits the game. First, it instantiates a NotificationManager ob
 
 ### Testing the code
 In order to test the code I've written some tests. These tests are hosted in the spec directory. I you want to see the result of these tests you can type - for example - ``http://localhost:5000/testRunner.html `` in your browser.
+
+### Running the game
+You can play the game using lite-server. If you don´t have installed lite-server, run:
+
+``npm install lite-server``
+
+and then, run ``lite serve`` in the application root.
