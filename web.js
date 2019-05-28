@@ -1,7 +1,7 @@
 const port = Number(process.env.PORT || 5000);
 
-var httpServer = require('http');
-var serverPath = require('./server');
+const httpServer = require('http');
+const serverPath = require('./server');
 
 const server = httpServer.createServer(
 	function(req, res){

@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 let getContentType = function(resource){
-	let contentType = 'text/html';		      	
+	const contentType = 'text/html';		      	
 	if(resource.indexOf('.css') > -1){
 		contentType = 'text/css';
 	}else{

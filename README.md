@@ -116,6 +116,7 @@ Lastly, index.js inits the game. First, it instantiates a NotificationManager ob
 In order to test the code I've written some tests. These tests are hosted in the spec directory. I you want to see the result of these tests you can type - for example - ``http://localhost:5000/testRunner.html `` in your browser.
 
 ### Running the game
+For running the game I needed to configurate a HTTP server, and to define a request manager. The first one is in the ``web.js`` file, and the second one is in the ``server.js`` file.
 For running the game locally, run:
 
 ``node web.js``
