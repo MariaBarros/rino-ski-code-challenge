@@ -19,7 +19,12 @@
     //Get asset name
     const assetIdx = randomInt(0, assetTypes.length - 1);
     this.assetName = assetTypes[assetIdx];
-    this.canBeJumped = (this.assetName === JUMP_RUMP);        
+    this.canBeJumped = this.availableForJump();
+    this.isRump = this.assetName === JUMP_RUMP;
+  }
+
+  availableForJump(){
+   return (this.assetName !== TREE && this.assetName !== TREE_CLUSTER);   
   }
   
  }

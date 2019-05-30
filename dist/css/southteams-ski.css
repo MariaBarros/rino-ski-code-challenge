@@ -24,13 +24,13 @@ html, body {
   width: 30%;
   margin-left: -15%;
   padding: 40px;
-  background: #B5E8C3;
+  background: #2D6073;
   text-align: center;
   animation-name: fadein;
 }
 
 #loading.show {
-  animation-duration: 0.2s;
+  animation-duration: 0.1s;
   top: 50%;
 }
 
@@ -97,22 +97,21 @@ html, body {
   width: 50%;
   margin-left: -25%;
   visibility: hidden;
-  background: #B5E8C3;
+  background: #2D6073;
   border-radius: 3px;
-  border: 5px solid rgba(31, 65, 78, 0.25);
+  border: 5px solid rgba(31, 65, 78, 0.5);
   z-index: 1000;
 }
 .message > .message-header {
-  background: #3a7d6f;
-  background: -webkit-linear-gradient(top, #3a7d6f, #65B8A6);
-  background: linear-gradient(to bottom, #3a7d6f, #65B8A6);
+  background: #10232a;
+  background: -webkit-linear-gradient(top, #10232a, #2D6073);
+  background: linear-gradient(to bottom, #10232a, #2D6073);
   text-transform: uppercase;
-  border-bottom: 3px solid #54b09c;
 }
 .message > .message-header > h1 {
   margin: 0;
   padding: 10px;
-  color: #10232a;
+  color: #a8cfdd;
 }
 .message > .message-body {
   padding: 20px;
@@ -163,8 +162,8 @@ button {
   text-transform: uppercase;
 }
 button:hover {
-  background-color: #65B8A6;
-  border-bottom: 5px solid #4aa08d;
+  background-color: #1f414e;
+  border-bottom: 5px solid #17323c;
   cursor: pointer;
 }
 
@@ -172,6 +171,10 @@ button:hover {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
+.best-score {
+  text-transform: uppercase;
+  color: #5fa6c0;
+}
 .best-score::before {
   content: "Your best score was: ";
 }

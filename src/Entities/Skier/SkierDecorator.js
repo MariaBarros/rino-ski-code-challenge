@@ -57,7 +57,6 @@ class SkierDecorator{
     this.pathStep += 2;
 
     this.truncatePath(centerX + centerY);
-
   }
 
   //Adding a new point in the skier path
@@ -77,7 +76,6 @@ class SkierDecorator{
         if(this.pathStep < centerX){
           this.path.push({x: centerX  - this.pathStep - 10, y: centerY - this.pathStep - 1});
         }
-        break;
     }
   }
 
@@ -88,10 +86,17 @@ class SkierDecorator{
     }
   }
 
+  checkPathJumping(){
+    if(this.isJumping === false){        
+      this.reset();   
+    }
+  }
+
   //Reset the path when the skier changes the direction
-  resetPath(){
+  reset(){
     this.pathStep = 0;
     this.path = [];
+    this.isJumping = false;
   }
   
 }

@@ -697,7 +697,12 @@ class Element{
     //Get asset name
     const assetIdx = randomInt(0, assetTypes.length - 1);
     this.assetName = assetTypes[assetIdx];
-    this.canBeJumped = (this.assetName === JUMP_RUMP);        
+    this.canBeJumped = this.availableForJump();
+    this.isRump = this.assetName === JUMP_RUMP;
+  }
+
+  availableForJump(){
+   return (this.assetName !== TREE && this.assetName !== TREE_CLUSTER);   
   }
   
  }
@@ -1084,7 +1089,7 @@ class Skier extends Element{
   init(){
     this.direction = SKIER_DIRECTIONS.RIGHT;
     this.assetName = SKIER_RIGHT;
-    this.decorator.path = [];
+    this.decorator.reset();
     this.x = 0;
     this.y = 0;        
     this.crashed = false;
@@ -1094,9 +1099,7 @@ class Skier extends Element{
   setDirection(direction) {
     this.direction = direction;
     this.updateAsset();
-    if(direction === SKIER_DIRECTIONS.CRASH){
-      this.crashed = true;
-    }
+    this.crashed = direction === SKIER_DIRECTIONS.CRASH;    
   }
 
   //Getting the skier assetName for drawing
@@ -1121,8 +1124,7 @@ class Skier extends Element{
         this.moveSkierDown();
         break;
       case SKIER_DIRECTIONS.RIGHT_DOWN:
-        this.moveSkierRightDown();       
-        break;      
+        this.moveSkierRightDown();
     }    
   }
 
@@ -1139,13 +1141,14 @@ class Skier extends Element{
 
   moveSkierDown() {
     this.y += this.speed;
-    if(this.decorator.isJumping === true){
+    if(this.isJumping() === true){
+      //Decore jump
       this.assetName = this.decorator.getJumpAsset();
-      this.decorator.controlJump();
-    }else{
-      this.updateAsset();
-      this.decorator.updatePath(this.direction); 
-    }
+      this.decorator.controlJump();      
+      return;
+    }    
+    this.updateAsset();
+    this.decorator.updatePath(this.direction);     
   }
 
   moveSkierRightDown() {
@@ -1167,30 +1170,26 @@ class Skier extends Element{
   turnLeft() {
     if(this.direction === SKIER_DIRECTIONS.LEFT) {
       this.moveSkierLeft();
+      return;
     }
-    else {
-      this.setDirection(this.direction - 1);
-      if(this.decorator.isJumping === false){        
-        this.decorator.resetPath();   
-      }
-    }
+    //Skier rotates
+    this.setDirection(this.direction - 1);
+    this.decorator.reset();    
   }
 
   //Change direction reset the skier path
   turnRight() {
     if(this.direction === SKIER_DIRECTIONS.RIGHT) {
       this.moveSkierRight();
-    }else {
-      this.setDirection(this.direction + 1);  
-      if(this.decorator.isJumping === false){        
-        this.decorator.resetPath();
-      }      
+      return;
     }
+    //Skier rotates
+    this.setDirection(this.direction + 1);  
+    this.decorator.reset();         
   }
 
   turnUp() {
-    if(this.direction === SKIER_DIRECTIONS.LEFT || 
-        this.direction === SKIER_DIRECTIONS.RIGHT) {
+    if(this.direction === SKIER_DIRECTIONS.LEFT || this.direction === SKIER_DIRECTIONS.RIGHT) {
       this.moveSkierUp();
     }
   }
@@ -1203,14 +1202,12 @@ class Skier extends Element{
   
 
   //The skier jumps
-  jump(overRump = false){
+  jump(){
     if(this.direction !== SKIER_DIRECTIONS.DOWN){
       return;
     }
-    this.decorator.jump(this.speed);
-    if(overRump === true){
-      this.notify({credit: CREDIT_FOR_JUMP * this.speed});
-    }
+
+    this.decorator.jump(this.speed);    
   }
 
   isJumping(){
@@ -1231,15 +1228,27 @@ class Skier extends Element{
     const collision = obstacleManager.getObstacles().find((obstacle) => {      
       const obstacleBounds = obstacle.getBounds();
       const intersected = intersectTwoRects(skierBounds, obstacleBounds);
-      if(intersected === true){
-        if(obstacle.canBeJumped === true){
-          this.jump(true);
-          return false;
-        }else{
-          return true;
-        }
+      if(intersected === false){
+        return false;
+      }      
+      //Obstacle intersected and cannot be jumped
+      if(obstacle.canBeJumped === false){
+        return true;
+      }
+
+      //Jump over rump
+      if(obstacle.isRump === true){
+        this.jump();
+        this.notify({credit: CREDIT_FOR_JUMP * this.speed});
+        return false;
+      }
+
+      //Jump over rock
+      if(this.isJumping() === true){
+        this.notify({credit: CREDIT_FOR_JUMP * this.speed});
+        return false;
       }else{
-        return false;  
+        return true;
       }
       
     });
@@ -1312,7 +1321,6 @@ class SkierDecorator{
     this.pathStep += 2;
 
     this.truncatePath(centerX + centerY);
-
   }
 
   //Adding a new point in the skier path
@@ -1332,7 +1340,6 @@ class SkierDecorator{
         if(this.pathStep < centerX){
           this.path.push({x: centerX  - this.pathStep - 10, y: centerY - this.pathStep - 1});
         }
-        break;
     }
   }
 
@@ -1343,10 +1350,17 @@ class SkierDecorator{
     }
   }
 
+  checkPathJumping(){
+    if(this.isJumping === false){        
+      this.reset();   
+    }
+  }
+
   //Reset the path when the skier changes the direction
-  resetPath(){
+  reset(){
     this.pathStep = 0;
     this.path = [];
+    this.isJumping = false;
   }
   
 }

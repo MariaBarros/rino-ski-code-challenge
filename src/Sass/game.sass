@@ -23,12 +23,12 @@ html, body
 	width: 30%
 	margin-left: -15%
 	padding: 40px
-	background: $color-green
+	background: $color-blue
 	text-align: center
 	animation-name: fadein
 
 #loading.show
-	animation-duration: .2s
+	animation-duration: .1s
 	top: 50%
 
 #loading.hide
@@ -79,18 +79,17 @@ html, body
 	width: 50%
 	margin-left: -25%
 	visibility: hidden
-	background: $color-green
+	background: $color-blue
 	border-radius: 3px
-	border: 5px solid rgba(darken($color-blue, 10%),.25)
+	border: 5px solid rgba(darken($color-blue, 10%),.5)
 	z-index: 1000
 	> .message-header		
-		@include gradient(darken($color-green-middle, 20%), $color-green-middle)	
-		text-transform: uppercase
-		border-bottom: 3px solid darken($color-green-middle, 5%)
+		@include gradient(darken($color-blue, 20%), $color-blue)	
+		text-transform: uppercase		
 		> h1
 			margin: 0
 			padding: 10px
-			color: darken($color-blue,20%)
+			color: lighten($color-blue,45%)
 	> .message-body
 		padding: 20px
 		>ul
@@ -130,14 +129,16 @@ button
 	color: white
 	text-transform: uppercase
 	&:hover
-		background-color: $color-green-middle
-		border-bottom: 5px solid darken($color-green-middle, 10%)
+		background-color: darken($color-blue, 10%)
+		border-bottom: 5px solid darken($color-blue, 15%)
 		cursor: pointer
 
 .score
 	@include text-shadow(2px,2px,2px,rgba(0,0,0,.25))
 
 .best-score
+	text-transform: uppercase
+	color: lighten($color-blue,25%)
 	&::before
 		content: "Your best score was: "
 	&.hide
