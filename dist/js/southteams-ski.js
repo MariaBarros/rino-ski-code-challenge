@@ -61,7 +61,7 @@ const RHINO_LIFT_MOUTH_OPEN = 'rhino_lift_mouth_open';
 const RHINO_RUN_LEFT = 'rhino_run_left';
 const RHINO_RUN_LEFT_2 = 'rhino_run_left_2';
 
-const RHINO_MOMENT = 5000;
+const RHINO_MOMENT = 10000;
 
 const RHINO_STATES = {
     INITIAL : 'initial',

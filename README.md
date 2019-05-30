@@ -54,7 +54,6 @@ In order to run the jshint task correctly, you must to create the ``.jshintrc`` 
         "Image": false,
         "module": true,
         "eqeqeq": true,
-        "strict": true,
         "console": true
     }   
 }
