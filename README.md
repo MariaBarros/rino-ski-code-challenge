@@ -101,7 +101,7 @@ Lastly, index.js inits the game. First, it instantiates a NotificationManager ob
 
 
 ### New features in this version
-1. Jumps: The skier jumps just for fun but if the skier jumps over a ramp, the player obtains 100 points extra.
+1. Jumps: The skier jumps just for fun but if the skier jumps over ramps or stones, the player obtains 100 points extra.
 2. Speed: The speed grows along the time. Skier is getting faster as the game progresses.
 3. Feed the hungry Rhino. When the skier skys for too long, a yeti appears and catch the skier for eating.
 4. Score. The score is stored using localStorage allowing that this data persists across browser refreshes.
